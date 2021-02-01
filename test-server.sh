@@ -4,9 +4,7 @@ cd test-server
 
 if [ -d "../target" ]; then
   mkdir -p plugins
-  if [ ! -f "plugins/EmojiChat.jar" ]; then
-    cp ../target/EmojiChat.jar plugins/EmojiChat.jar
-  fi
+  cp ../target/EmojiChat.jar plugins/EmojiChat.jar
 else
   echo "You need to build EmojiChat first"
   exit 0
