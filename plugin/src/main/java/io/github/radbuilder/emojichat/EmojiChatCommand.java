@@ -18,7 +18,7 @@ class EmojiChatCommand implements CommandExecutor {
 	 * EmojiChat main class instance.
 	 */
 	private final EmojiChat plugin;
-	
+
 	/**
 	 * Creates the EmojiChat command class with the main class instance.
 	 *
@@ -27,7 +27,7 @@ class EmojiChatCommand implements CommandExecutor {
 	EmojiChatCommand(EmojiChat plugin) {
 		this.plugin = plugin;
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
 		if (args.length < 1) {
@@ -35,7 +35,7 @@ class EmojiChatCommand implements CommandExecutor {
 			sender.sendMessage(ChatColor.AQUA + "Use " + ChatColor.GREEN + "/emojichat help" + ChatColor.AQUA + " for help.");
 			return true;
 		}
-		
+
 		// Sub commands
 		switch (args[0].toLowerCase()) {
 			case "help":
@@ -43,7 +43,7 @@ class EmojiChatCommand implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "You need " + ChatColor.GOLD + "emojichat.help" + ChatColor.RED + " to use this command.");
 					return true;
 				}
-				
+
 				sender.sendMessage(ChatColor.AQUA + "---------- EmojiChat Help ----------");
 				sender.sendMessage(ChatColor.GREEN + "/emojichat help: " + ChatColor.AQUA + "Opens up this help menu.");
 				sender.sendMessage(ChatColor.GREEN + "/emojichat resourcepack: " + ChatColor.AQUA + "Re-sends the resourcepack.");
@@ -56,7 +56,7 @@ class EmojiChatCommand implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "You need " + ChatColor.GOLD + "emojichat.see" + ChatColor.RED + " to use this command.");
 					return true;
 				}
-				
+
 				if (sender instanceof Player) {
 					((Player) sender).setResourcePack(plugin.getEmojiHandler().getPackVariant().getUrl(plugin.getConfig().getString("pack-quality")));
 					sender.sendMessage(ChatColor.GREEN + "Sent the EmojiChat ResourcePack.");
@@ -68,7 +68,7 @@ class EmojiChatCommand implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "You need " + ChatColor.GOLD + "emojichat.reload" + ChatColor.RED + " to use this command.");
 					return true;
 				}
-				
+
 				plugin.reloadConfig();
 				plugin.getEmojiHandler().load(plugin);
 				sender.sendMessage(ChatColor.GREEN + "EmojiChat config reloaded.");
@@ -78,7 +78,7 @@ class EmojiChatCommand implements CommandExecutor {
 					sender.sendMessage(ChatColor.RED + "You need " + ChatColor.GOLD + "emojichat.toggle" + ChatColor.RED + " to use this command.");
 					return true;
 				}
-				
+
 				if (sender instanceof Player) {
 					plugin.getEmojiHandler().toggleShortcutsOff((Player) sender);
 					sender.sendMessage(ChatColor.AQUA + "Emoji shortcuts are now " + (plugin.getEmojiHandler().hasShortcutsOff((Player) sender) ? ChatColor.RED + "disabled" : ChatColor.GREEN + "enabled") + ChatColor.AQUA + ".");

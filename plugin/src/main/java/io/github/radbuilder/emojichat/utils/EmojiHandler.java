@@ -2,6 +2,7 @@ package io.github.radbuilder.emojichat.utils;
 
 import io.github.radbuilder.emojichat.EmojiChat;
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -51,7 +52,7 @@ public class EmojiHandler {
 	 * The {@link EmojiPackVariant} being used.
 	 */
 	private EmojiPackVariant packVariant;
-	
+
 	/**
 	 * Creates the emoji handler with the main class instance.
 	 *
@@ -59,15 +60,15 @@ public class EmojiHandler {
 	 */
 	public EmojiHandler(EmojiChat plugin) {
 		this.plugin = plugin;
-		
+
 		emojis = new LinkedHashMap<>();
 		shortcuts = new HashMap<>();
 		disabledCharacters = new ArrayList<>();
 		shortcutsOff = new ArrayList<>();
-		
+
 		load(plugin);
 	}
-	
+
 	/**
 	 * Gets the {@link #emojis} map.
 	 *
@@ -76,7 +77,7 @@ public class EmojiHandler {
 	public LinkedHashMap<String, Character> getEmojis() {
 		return emojis;
 	}
-	
+
 	/**
 	 * Gets the {@link #disabledCharacters} list.
 	 *
@@ -85,7 +86,7 @@ public class EmojiHandler {
 	public List<Character> getDisabledCharacters() {
 		return disabledCharacters;
 	}
-	
+
 	/**
 	 * Gets the {@link #shortcuts} map.
 	 *
@@ -94,7 +95,7 @@ public class EmojiHandler {
 	public HashMap<String, String> getShortcuts() {
 		return shortcuts;
 	}
-	
+
 	/**
 	 * Checks if the specified player has emoji shortcuts off.
 	 *
@@ -104,7 +105,7 @@ public class EmojiHandler {
 	public boolean hasShortcutsOff(Player player) {
 		return shortcutsOff.contains(player.getUniqueId());
 	}
-	
+
 	/**
 	 * Toggles emoji shortcut use on/off for the specified player.
 	 *
@@ -117,7 +118,7 @@ public class EmojiHandler {
 			shortcutsOff.add(player.getUniqueId());
 		}
 	}
-	
+
 	/**
 	 * Validates the config.
 	 *
@@ -133,7 +134,7 @@ public class EmojiHandler {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Loads the emoji shortcuts from the config.
 	 *
@@ -146,7 +147,7 @@ public class EmojiHandler {
 			}
 		}
 	}
-	
+
 	/**
 	 * Loads the disabled emojis from the config.
 	 *
@@ -164,7 +165,7 @@ public class EmojiHandler {
 			}
 		}
 	}
-	
+
 	/**
 	 * If emoji coloring should be fixed.
 	 *
@@ -173,7 +174,7 @@ public class EmojiHandler {
 	public boolean fixColoring() {
 		return fixColoring;
 	}
-	
+
 	/**
 	 * Loads the emojis and their shortcuts into the {@link #emojis}.
 	 */
@@ -187,7 +188,7 @@ public class EmojiHandler {
 				emojiChar = '娀';
 				break;
 		}
-		
+
 		try {
 			InputStream listInput = getClass().getResourceAsStream("/list.txt");
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(listInput));
@@ -196,6 +197,7 @@ public class EmojiHandler {
 				if (line.startsWith("#")) { // Ignored lines
 					continue;
 				}
+				Bukkit.getLogger().info("[EC] Adding emoji " + line +  " as " + emojiChar);
 				emojis.put(line, emojiChar++); // Add the emoji we're currently on and switch it to the next char
 			}
 			bufferedReader.close();
@@ -205,7 +207,7 @@ public class EmojiHandler {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Clears the {@link #emojis}, {@link #shortcuts}, and {@link #disabledCharacters} maps.
 	 */
@@ -215,7 +217,7 @@ public class EmojiHandler {
 		disabledCharacters.clear();
 		shortcutsOff.clear();
 	}
-	
+
 	/**
 	 * Loads the emoji handler data.
 	 *
@@ -223,12 +225,12 @@ public class EmojiHandler {
 	 */
 	public void load(EmojiChat plugin) {
 		disable();
-		
+
 		// Get the pack variant we're using BEFORE loading emojis
 		packVariant = EmojiPackVariant.getVariantbyId(plugin.getConfig().getInt("pack-variant"));
-		
+
 		loadEmojis(); // Loads ALL emojis
-		
+
 		if (!validateConfig(plugin.getConfig())) { // Make sure the config is valid
 			plugin.getLogger().warning("Your config is invalid. No configuation data was loaded.");
 			plugin.getLogger().warning("Fix your config, then use /emojichat reload");
@@ -239,7 +241,7 @@ public class EmojiHandler {
 			fixColoring = plugin.getConfig().getBoolean("fix-emoji-coloring");
 		}
 	}
-	
+
 	/**
 	 * Converts the specified message's shortcuts (i.e. :100:) to emoji.
 	 *
@@ -253,7 +255,7 @@ public class EmojiHandler {
 		}
 		return message;
 	}
-	
+
 	/**
 	 * Converts the specified line's shortcuts (i.e. :100:) to emoji from sign.
 	 *
@@ -267,7 +269,7 @@ public class EmojiHandler {
 		}
 		return line;
 	}
-	
+
 	/**
 	 * Converts the specified message's shortcuts (i.e. :100:) to emoji from chat.
 	 *
@@ -288,7 +290,7 @@ public class EmojiHandler {
 		}
 		return message;
 	}
-	
+
 	/**
 	 * Replaces shorthand ("shortcuts" in config) with correct emoji shortcuts.
 	 *
@@ -299,7 +301,7 @@ public class EmojiHandler {
 		message = message.replace("http://", "http\\://").replace("https://", "https\\://");
 		StringBuilder replaced = new StringBuilder();
 		int previousPosition = 0;
-		
+
 		// Go through all shortcuts
 		for (String key : getShortcuts().keySet()) {
 			// If the message has the shortcut
@@ -326,7 +328,7 @@ public class EmojiHandler {
 		}
 		return message;
 	}
-	
+
 	/**
 	 * Checks if the specified message contains a disabled character, if enabled.
 	 *
@@ -341,7 +343,7 @@ public class EmojiHandler {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Gets the {@link EmojiPackVariant} being used.
 	 *

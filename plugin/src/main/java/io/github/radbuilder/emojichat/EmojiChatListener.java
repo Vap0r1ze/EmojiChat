@@ -29,7 +29,7 @@ class EmojiChatListener implements Listener {
 	 * If EmojiChat should automatically download the ResourcePack for the player.
 	 */
 	private final boolean autoDownloadResourcePack;
-	
+
 	/**
 	 * Creates the EmojiChat listener class with the main class instance.
 	 *
@@ -39,21 +39,21 @@ class EmojiChatListener implements Listener {
 		this.plugin = plugin;
 		autoDownloadResourcePack = plugin.getConfig().getBoolean("download-resourcepack");
 	}
-	
+
 	@EventHandler
 	void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
-		
+
 		// Send the player an alert if there's an update available
 		if (player.hasPermission("emojichat.updates") && plugin.updateChecker.updateAvailable) {
 			player.sendMessage(ChatColor.AQUA + "An update for EmojiChat is available.");
 			player.sendMessage(ChatColor.AQUA + "Current version: " + ChatColor.GOLD + plugin.updateChecker.currentVersion
 					+ ChatColor.AQUA + ". Latest version: " + ChatColor.GOLD + plugin.updateChecker.latestVersion + ChatColor.AQUA + ".");
 		}
-		
+
 		if (!autoDownloadResourcePack) // If auto downloading of the ResourcePack is disabled
 			return;
-		
+
 		// Send the player the resource pack
 		Bukkit.getScheduler().runTaskLater(plugin, () -> {
 			if (player.hasPermission("emojichat.see")) { // If the player can see emojis
@@ -65,95 +65,95 @@ class EmojiChatListener implements Listener {
 			}
 		}, 20L); // Give time for the player to join
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGH)
 	void onChat(AsyncPlayerChatEvent event) {
 		if (!event.getPlayer().hasPermission("emojichat.use") || !event.getPlayer().hasPermission("emojichat.use.chat"))
 			return; // Don't do anything if they don't have permission
-		
+
 		String message = event.getMessage();
-		
+
 		// Checks if the user disabled shortcuts via /emojichat toggle
 		if (!plugin.getEmojiHandler().hasShortcutsOff(event.getPlayer())) {
 			message = plugin.getEmojiHandler().translateShorthand(message);
 		}
-		
+
 		// Replace shortcuts with emojis
 		message = plugin.getEmojiHandler().toEmojiFromChat(message);
-		
+
 		// If the message contains a disabled character
 		if (plugin.getEmojiHandler().containsDisabledCharacter(message)) {
 			event.setCancelled(true);
 			event.getPlayer().sendMessage(ChatColor.RED + "Oops! You can't use disabled emoji characters!");
 			return;
 		}
-		
+
 		event.setMessage(message);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGH)
 	void onSignChange(SignChangeEvent event) {
 		if (!event.getPlayer().hasPermission("emojichat.use") || !event.getPlayer().hasPermission("emojichat.use.sign"))
 			return; // Don't do anything if they don't have permission
-		
+
 		if (!plugin.getConfig().getBoolean("emojis-on-signs")) // Feature is disabled
 			return;
-		
+
 		for (int i = 0; i < 4; i++) {
 			String line = event.getLine(i);
-			
+
 			// Checks if the user disabled shortcuts via /emojichat toggle
 			if (!plugin.getEmojiHandler().hasShortcutsOff(event.getPlayer())) {
 				line = plugin.getEmojiHandler().translateShorthand(line);
 			}
-			
+
 			// Replace shortcuts with emojis
 			line = plugin.getEmojiHandler().toEmojiFromSign(line);
-			
+
 			// If the message contains a disabled character
 			if (plugin.getEmojiHandler().containsDisabledCharacter(line)) {
 				event.setCancelled(true);
 				event.getPlayer().sendMessage(ChatColor.RED + "Oops! You can't use disabled emoji characters!");
 				return;
 			}
-			
+
 			event.setLine(i, line);
 		}
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGH)
 	void onCommandPreProcess(PlayerCommandPreprocessEvent event) {
 		if (!event.getPlayer().hasPermission("emojichat.use") || !event.getPlayer().hasPermission("emojichat.use.command"))
 			return; // Don't do anything if they don't have permission
-		
+
 		if (!plugin.getConfig().getBoolean("emojis-in-commands")) // Feature is disabled
 			return;
-		
+
 		String command = event.getMessage();
-		
+
 		// only-command-list is enabled and the command-list doesn't contain the command being ran
 		if (plugin.getConfig().getBoolean("only-command-list") && !plugin.getConfig().getStringList("command-list").contains(command.split(" ")[0].toLowerCase())) {
 			return;
 		}
-		
+
 		// Checks if the user disabled shortcuts via /emojichat toggle
 		if (!plugin.getEmojiHandler().hasShortcutsOff(event.getPlayer())) {
 			command = plugin.getEmojiHandler().translateShorthand(command);
 		}
-		
+
 		// Replace shortcuts with emojis
 		command = plugin.getEmojiHandler().toEmoji(command);
-		
+
 		// If the message contains a disabled character
 		if (plugin.getEmojiHandler().containsDisabledCharacter(command)) {
 			event.setCancelled(true);
 			event.getPlayer().sendMessage(ChatColor.RED + "Oops! You can't use disabled emoji characters!");
 			return;
 		}
-		
+
 		event.setMessage(command);
 	}
-	
+
 	@EventHandler
 	void onInventoryClick(InventoryClickEvent event) {
 		if (event.getView().getTitle().contains("Emoji List")) {
@@ -162,7 +162,7 @@ class EmojiChatListener implements Listener {
 					&& event.getCurrentItem().getItemMeta().hasDisplayName()) { // Make sure the item clicked is a page change item
 				try {
 					int currentPage = Integer.parseInt(event.getView().getTitle().split(" ")[3]) - 1; // Get the page number from the title
-					
+
 					if (event.getCurrentItem().getItemMeta().getDisplayName().contains("<-")) { // Back button
 						event.getWhoClicked().openInventory(plugin.emojiChatGui.getInventory(currentPage - 1));
 					} else { // Next button

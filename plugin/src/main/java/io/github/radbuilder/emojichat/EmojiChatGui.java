@@ -23,7 +23,7 @@ class EmojiChatGui {
 	 * EmojiChat main class instance.
 	 */
 	private final EmojiChat plugin;
-	
+
 	/**
 	 * Creates the EmojiChat gui class with the main class instance.
 	 *
@@ -32,7 +32,7 @@ class EmojiChatGui {
 	EmojiChatGui(EmojiChat plugin) {
 		this.plugin = plugin;
 	}
-	
+
 	/**
 	 * Gets the emoji list gui {@link org.bukkit.inventory.Inventory} using the specified page number.
 	 *
@@ -61,7 +61,7 @@ class EmojiChatGui {
 		});
 		return gui;
 	}
-	
+
 	/**
 	 * Adds the back arrow to the gui specified.
 	 *
@@ -74,7 +74,7 @@ class EmojiChatGui {
 		backArrowStack.setItemMeta(meta);
 		gui.setItem(45, backArrowStack);
 	}
-	
+
 	/**
 	 * Adds the next arrow to the gui specified.
 	 *
@@ -87,7 +87,7 @@ class EmojiChatGui {
 		nextArrowStack.setItemMeta(meta);
 		gui.setItem(53, nextArrowStack);
 	}
-	
+
 	/**
 	 * Adds an EmojiList item to the gui specified.
 	 *

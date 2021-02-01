@@ -20,7 +20,7 @@ public enum EmojiPackVariant {
 	 * Replaces Chinese unicode characters with emojis.
 	 */
 	CHINESE(2);
-	
+
 	/**
 	 * The variant id.
 	 */
@@ -33,7 +33,7 @@ public enum EmojiPackVariant {
 	 * The pack variant's URL.
 	 */
 	private final String url;
-	
+
 	/**
 	 * Creates a new emoji pack variant with the specified id.
 	 *
@@ -44,7 +44,7 @@ public enum EmojiPackVariant {
 		this.hash = byteHash(id);
 		this.url = "https://github.com/RadBuilder/EmojiChat/releases/download/v1.8/EmojiChat." + id + ".{HD or SD}.ResourcePack.v1.8.zip";
 	}
-	
+
 	/**
 	 * Gets the variant id.
 	 *
@@ -53,7 +53,7 @@ public enum EmojiPackVariant {
 	public int getId() {
 		return id;
 	}
-	
+
 	/**
 	 * Gets the variant's SHA1 hash.
 	 *
@@ -67,7 +67,7 @@ public enum EmojiPackVariant {
 		}
 		return hash[quality.equals("HD") ? 0 : 1];
 	}
-	
+
 	/**
 	 * Gets the variant's url.
 	 *
@@ -81,7 +81,7 @@ public enum EmojiPackVariant {
 		}
 		return url.replace("{HD or SD}", quality);
 	}
-	
+
 	/**
 	 * Gets the {@link EmojiPackVariant} based on the id specified.
 	 *
@@ -96,7 +96,7 @@ public enum EmojiPackVariant {
 		}
 		return null; // ID given doesn't match a variant
 	}
-	
+
 	/**
 	 * Gets the hash for the specified id.
 	 *
@@ -106,7 +106,7 @@ public enum EmojiPackVariant {
 	private byte[][] byteHash(int id) {
 		byte[][] hashes = new byte[2][];
 		int hashesPosition = 0;
-		
+
 		try {
 			InputStream listInput = getClass().getResourceAsStream("/hash." + id + ".txt");
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(listInput));
@@ -116,7 +116,7 @@ public enum EmojiPackVariant {
 					continue;
 				}
 				byte[] hash = new byte[20];
-				
+
 				String[] values = line.split(",");
 				for (int i = 0; i < 20; i++) {
 					hash[i] = Byte.parseByte(values[i]);

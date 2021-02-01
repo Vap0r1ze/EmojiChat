@@ -25,7 +25,7 @@ public class EmojiChatConfigUpdater {
 	 * The current config version number.
 	 */
 	private final int CONFIG_VERSION = 5;
-	
+
 	/**
 	 * Creates the EmojiChat config updater with the main class instance.
 	 *
@@ -33,13 +33,13 @@ public class EmojiChatConfigUpdater {
 	 */
 	public EmojiChatConfigUpdater(EmojiChat plugin) {
 		int configVersion = plugin.getConfig().getInt("config-version");
-		
+
 		if (configVersion < CONFIG_VERSION) {
 			plugin.getLogger().info("Updating your config now (old: " + configVersion + ", new: " + CONFIG_VERSION + ")...");
 			updateConfig(plugin, plugin.getConfig(), configVersion);
 		}
 	}
-	
+
 	/**
 	 * Updates the EmojiChat config.
 	 *
@@ -55,7 +55,7 @@ public class EmojiChatConfigUpdater {
 		for (String key : config.getConfigurationSection("shortcuts").getKeys(false)) { // Gets all of the headers/keys in the shortcuts section
 			shortcuts.put(key, config.getStringList("shortcuts." + key));
 		}
-		
+
 		// Config v2 values
 		String metricsCollection = "FULL";
 		boolean downloadResourcePack = true;
@@ -63,7 +63,7 @@ public class EmojiChatConfigUpdater {
 			metricsCollection = config.getString("metrics-collection");
 			downloadResourcePack = config.getBoolean("download-resourcepack");
 		}
-		
+
 		// Config v4 values
 		boolean emojisOnSigns = config.contains("emojis-on-signs") ? config.getBoolean("emojis-on-signs") : false;
 		boolean emojisInCommands = config.contains("emojis-in-commands") ? config.getBoolean("emojis-in-commands") : false;
@@ -71,10 +71,10 @@ public class EmojiChatConfigUpdater {
 		List<String> commandList = config.contains("command-list") ? config.getStringList("command-list") : Arrays.asList("/msg", "/tell");
 		int packVariant = config.contains("pack-variant") ? config.getInt("pack-variant") : 1;
 		boolean disableEmojis = config.contains("disable-emojis") ? config.getBoolean("disable-emojis") : true;
-		
+
 		// Config lines
 		List<String> configLines = new ArrayList<>();
-		configLines.add("# Configuration file for EmojiChat by RadBuilder");
+		configLines.add("# Configuration file for EmojiChat by RadBuilder and Vap0r1ze");
 		configLines.add("");
 		configLines.add("# EmojiChat collects metrics in order to get a better understanding of what configurations are used.");
 		configLines.add("# Statistics include how many servers it's being used on and what version of Bukkit/Spigot they're using,");
@@ -227,14 +227,14 @@ public class EmojiChatConfigUpdater {
 		configLines.add("# The config version, used to be able to update your config when future versions come out.");
 		configLines.add("# Don't change this, or you'll experience issues with EmojiChat.");
 		configLines.add("config-version: " + CONFIG_VERSION);
-		
+
 		// Update the config
 		setConfig(plugin, configLines);
 		// Clear non-used lists
 		disabledEmojis.clear();
 		shortcuts.clear();
 	}
-	
+
 	/**
 	 * Sets the config to be the specified set of lines.
 	 *
@@ -247,7 +247,7 @@ public class EmojiChatConfigUpdater {
 			if (!configFile.delete()) { // Delete the old config
 				plugin.getLogger().warning("Failed to delete the old config. If this continues: back up your config, manually delete it, then restart.");
 			}
-			
+
 			// Create the new config
 			configFile = new File(plugin.getDataFolder() + "/config.yml");
 			FileOutputStream fileOutputStream = new FileOutputStream(configFile);
@@ -256,7 +256,7 @@ public class EmojiChatConfigUpdater {
 			for (String configLine : configLines) {
 				writer.write(configLine + "\n");
 			}
-			
+
 			// Cleanup
 			writer.close();
 			outputStreamWriter.close();

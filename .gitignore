@@ -55,3 +55,9 @@ fabric.properties
 dependency-reduced-pom.xml
 *.jar
 target/
+
+# Test Server
+test-server
+
+# Node Modules
+node_modules

@@ -40,7 +40,7 @@ public class EmojiChat extends JavaPlugin {
 	 * The metrics data handler.
 	 */
 	private MetricsHandler metricsHandler;
-	
+
 	@Override
 	public void onEnable() {
 		if (!new File(getDataFolder(), "config.yml").exists()) { // If there's not a config, make one
@@ -48,19 +48,19 @@ public class EmojiChat extends JavaPlugin {
 		} else {
 			new EmojiChatConfigUpdater(this); // If there is a config, see if it can be updated
 		}
-		
+
 		enabledHooks = new ArrayList<>();
 		emojiChatGui = new EmojiChatGui(this);
 		updateChecker = new EmojiChatUpdateChecker(this);
 		emojiHandler = new EmojiHandler(this);
-		
+
 		loadHooks(); // Load plugin hooks
-		
+
 		metricsHandler = new MetricsHandler(this); // Creates the metrics handler for metrics gathering
-		
+
 		// Register the chat listener
 		Bukkit.getPluginManager().registerEvents(new EmojiChatListener(this), this);
-		
+
 		// Register the "emojichat" and "ec" commands
 		EmojiChatCommand emojiChatCommand = new EmojiChatCommand(this);
 		EmojiChatTabComplete emojiChatTabComplete = new EmojiChatTabComplete();
@@ -69,7 +69,7 @@ public class EmojiChat extends JavaPlugin {
 		getCommand("ec").setExecutor(emojiChatCommand);
 		getCommand("ec").setTabCompleter(emojiChatTabComplete);
 	}
-	
+
 	@Override
 	public void onDisable() {
 		for (EmojiChatHook hook : enabledHooks) { // Disables enabled hooks, if any
@@ -79,7 +79,7 @@ public class EmojiChat extends JavaPlugin {
 		emojiHandler.disable();
 		updateChecker.cancelUpdateTask();
 	}
-	
+
 	/**
 	 * Hooks into available plugins.
 	 */
@@ -102,7 +102,7 @@ public class EmojiChat extends JavaPlugin {
 			enabledHooks.add(new TelegramChatHook(this));
 		}
 	}
-	
+
 	/**
 	 * Gets the list of enabled {@link io.github.radbuilder.emojichat.hooks.EmojiChatHook}.
 	 *
@@ -111,7 +111,7 @@ public class EmojiChat extends JavaPlugin {
 	public List<EmojiChatHook> getEnabledHooks() {
 		return enabledHooks;
 	}
-	
+
 	/**
 	 * Gets the {@link #metricsHandler}.
 	 *
@@ -120,7 +120,7 @@ public class EmojiChat extends JavaPlugin {
 	public MetricsHandler getMetricsHandler() {
 		return metricsHandler;
 	}
-	
+
 	/**
 	 * Gets the emoji handler.
 	 *
