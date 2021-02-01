@@ -197,7 +197,6 @@ public class EmojiHandler {
 				if (line.startsWith("#")) { // Ignored lines
 					continue;
 				}
-				Bukkit.getLogger().info("[EC] Adding emoji " + line +  " as " + emojiChar);
 				emojis.put(line, emojiChar++); // Add the emoji we're currently on and switch it to the next char
 			}
 			bufferedReader.close();
