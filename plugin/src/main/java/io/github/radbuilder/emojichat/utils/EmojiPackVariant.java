@@ -42,7 +42,7 @@ public enum EmojiPackVariant {
 	EmojiPackVariant(int id) {
 		this.id = id;
 		this.hash = byteHash(id);
-		this.url = "https://github.com/Vap0r1ze/EmojiChat/releases/download/v2/EmojiChat." + id + ".{HD or SD}.ResourcePack.v2.zip";
+		this.url = "https://github.com/Vap0r1ze/EmojiChat/releases/download/v{version}/EmojiChat." + id + ".{HD or SD}.ResourcePack.zip";
 	}
 
 	/**
@@ -72,14 +72,15 @@ public enum EmojiPackVariant {
 	 * Gets the variant's url.
 	 *
 	 * @param quality The quality of the pack (hd or sd).
+	 * @param version The plugin version.
 	 * @return The variant's url.
 	 */
-	public String getUrl(String quality) {
+	public String getUrl(String quality, String version) {
 		quality = quality.toUpperCase(); // Ensure quality is uppercase for a valid URL
 		if (!quality.equals("HD") && !quality.equals("SD")) {
 			quality = "SD"; // Handle invalid config options by giving them the sd version
 		}
-		return url.replace("{HD or SD}", quality);
+		return url.replace("{HD or SD}", quality).replace("{version}", version);
 	}
 
 	/**

@@ -1,8 +1,8 @@
 name: EmojiChat
-version: 1.8.3
+version: 2.0.1
 description: Adds emojis to your chat
-author: RadBuilder
-website: "https://github.com/RadBuilder/EmojiChat/"
+author: RadBuilder + Vap0r1ze
+website: "https://github.com/Vap0r1ze/EmojiChat/"
 main: io.github.radbuilder.emojichat.EmojiChat
 
 softdepend: [DiscordSRV, DiscordSRV-Staff-Chat, MVdWPlaceholderAPI, PlaceholderAPI, TelegramChat]

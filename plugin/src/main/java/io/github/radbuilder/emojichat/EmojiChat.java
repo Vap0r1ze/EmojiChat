@@ -15,8 +15,8 @@ import java.util.List;
 /**
  * EmojiChat main class.
  *
- * @author RadBuilder
- * @version 1.8.3
+ * @author RadBuilder + Vap0r1ze
+ * @version 2.0.1
  * @since 1.0
  */
 public class EmojiChat extends JavaPlugin {

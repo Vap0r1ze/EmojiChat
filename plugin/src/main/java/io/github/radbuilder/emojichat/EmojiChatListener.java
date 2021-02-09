@@ -45,11 +45,11 @@ class EmojiChatListener implements Listener {
 		Player player = event.getPlayer();
 
 		// Send the player an alert if there's an update available
-		if (player.hasPermission("emojichat.updates") && plugin.updateChecker.updateAvailable) {
-			player.sendMessage(ChatColor.AQUA + "An update for EmojiChat is available.");
-			player.sendMessage(ChatColor.AQUA + "Current version: " + ChatColor.GOLD + plugin.updateChecker.currentVersion
-					+ ChatColor.AQUA + ". Latest version: " + ChatColor.GOLD + plugin.updateChecker.latestVersion + ChatColor.AQUA + ".");
-		}
+		// if (player.hasPermission("emojichat.updates") && plugin.updateChecker.updateAvailable) {
+		// 	player.sendMessage(ChatColor.AQUA + "An update for EmojiChat is available.");
+		// 	player.sendMessage(ChatColor.AQUA + "Current version: " + ChatColor.GOLD + plugin.updateChecker.currentVersion
+		// 			+ ChatColor.AQUA + ". Latest version: " + ChatColor.GOLD + plugin.updateChecker.latestVersion + ChatColor.AQUA + ".");
+		// }
 
 		if (!autoDownloadResourcePack) // If auto downloading of the ResourcePack is disabled
 			return;
@@ -58,9 +58,9 @@ class EmojiChatListener implements Listener {
 		Bukkit.getScheduler().runTaskLater(plugin, () -> {
 			if (player.hasPermission("emojichat.see")) { // If the player can see emojis
 				try {
-					player.setResourcePack(plugin.getEmojiHandler().getPackVariant().getUrl(plugin.getConfig().getString("pack-quality")), plugin.getEmojiHandler().getPackVariant().getHash(plugin.getConfig().getString("pack-quality"))); // If the Spigot version supports loading cached versions
+					player.setResourcePack(plugin.getEmojiHandler().getPackVariant().getUrl(plugin.getConfig().getString("pack-quality"), plugin.getDescription().getVersion()), plugin.getEmojiHandler().getPackVariant().getHash(plugin.getConfig().getString("pack-quality"))); // If the Spigot version supports loading cached versions
 				} catch (Exception | NoSuchMethodError e) {
-					player.setResourcePack(plugin.getEmojiHandler().getPackVariant().getUrl(plugin.getConfig().getString("pack-quality"))); // If the Spigot version doesn't support loading cached versions
+					player.setResourcePack(plugin.getEmojiHandler().getPackVariant().getUrl(plugin.getConfig().getString("pack-quality"), plugin.getDescription().getVersion())); // If the Spigot version doesn't support loading cached versions
 				}
 			}
 		}, 20L); // Give time for the player to join
