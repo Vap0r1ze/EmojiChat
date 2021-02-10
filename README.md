@@ -1,16 +1,32 @@
-[![Build Status](https://travis-ci.org/RadBuilder/EmojiChat.svg?branch=master)](https://travis-ci.org/RadBuilder/EmojiChat)
-[![GitHub last commit](https://img.shields.io/github/last-commit/RadBuilder/EmojiChat.svg)](https://github.com/RadBuilder/EmojiChat/commits/master)
-[![version](https://img.shields.io/github/release/RadBuilder/EmojiChat.svg?colorB=1565C0)](https://github.com/RadBuilder/EmojiChat/releases/latest)
-[![Discord](https://discordapp.com/api/guilds/394749667226943489/widget.png)](https://discord.gg/faUbQ6B)
-[![view on SpigotMC](https://img.shields.io/badge/view%20on-spigotmc-orange.svg)](https://www.spigotmc.org/resources/emojichat.50955/)
-[![wiki](https://img.shields.io/badge/go%20to-wiki-blue.svg)](https://github.com/RadBuilder/EmojiChat/wiki)
-## EmojiChat
-EmojiChat is a simple, configurable, opensource plugin that adds emojis to your chat, signs, and more!
+[![Build Status](https://img.shields.io/github/workflow/status/Vap0r1ze/EmojiChat/Java%20CI/master)](https://github.com/Vap0r1ze/EmojiChat/actions?query=workflow%3A%22Java+CI%22)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/Vap0r1ze/EmojiChat.svg)](https://github.com/Vap0r1ze/EmojiChat/commits/master)
+[![Version](https://img.shields.io/github/release/Vap0r1ze/EmojiChat.svg?colorB=1565C0)](https://github.com/Vap0r1ze/EmojiChat/releases/latest)
 
-[![ChatExample](https://i.imgur.com/wa0LeVd.png)](https://i.imgur.com/zJUVyst.png)  
+## EmojiChat v2
+This is a fork that includes support for all of the latest twemoji on Discord (up to [Unicode v13.0]), excluding tone variations.
 
-In order for everyone to have the best experience possible, we have a few guidelines that everyone must follow.    
-- For all things on GitHub, please make sure you follow the [code of conduct](.github/CODE_OF_CONDUCT.md).  
-- When creating an issue, please make sure you're using the [issue template](.github/ISSUE_TEMPLATE/BUG_REPORT.md).  
-- When submitting a pull request, please make sure you're using the [pull request template](.github/PULL_REQUEST_TEMPLATE.md).  
-- When contributing, please make sure you check out the [contribution guidelines](.github/CONTRIBUTING.md).  
+![Chat Example](https://i.imgur.com/2hkljK3.png)
+
+# License
+
+MIT License
+
+Copyright (c) 2021 Vap0r1ze
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
