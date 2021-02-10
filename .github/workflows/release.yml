@@ -16,13 +16,13 @@ jobs:
     - name: Zip Resource Pack Variants
       run: |
         cd "$GITHUB_WORKSPACE/resourcepack/variant 1/sd/"
-        zip -r $GITHUB_WORKSPACE/target/EmojiChat.1.SD.ResourcePack.zip *
+        zip -Xr $GITHUB_WORKSPACE/target/EmojiChat.1.SD.ResourcePack.zip *
         cd "$GITHUB_WORKSPACE/resourcepack/variant 1/hd/"
-        zip -r $GITHUB_WORKSPACE/target/EmojiChat.1.HD.ResourcePack.zip *
+        zip -Xr $GITHUB_WORKSPACE/target/EmojiChat.1.HD.ResourcePack.zip *
         cd "$GITHUB_WORKSPACE/resourcepack/variant 2/sd/"
-        zip -r $GITHUB_WORKSPACE/target/EmojiChat.2.SD.ResourcePack.zip *
+        zip -Xr $GITHUB_WORKSPACE/target/EmojiChat.2.SD.ResourcePack.zip *
         cd "$GITHUB_WORKSPACE/resourcepack/variant 2/hd/"
-        zip -r $GITHUB_WORKSPACE/target/EmojiChat.2.HD.ResourcePack.zip *
+        zip -Xr $GITHUB_WORKSPACE/target/EmojiChat.2.HD.ResourcePack.zip *
     - name: Upload Plugin Jar
       uses: skx/github-action-publish-binaries@master
       env:
