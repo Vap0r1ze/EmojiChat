@@ -17,16 +17,7 @@ jobs:
         with:
           node-version: 12
       - name: Zip Resource Pack Variants
-        run: |
-          mkdir -p $GITHUB_WORKSPACE/target
-          cd "$GITHUB_WORKSPACE/resourcepack/variant 1/sd/"
-          zip -Xr $GITHUB_WORKSPACE/target/EmojiChat.1.SD.ResourcePack.zip *
-          cd "$GITHUB_WORKSPACE/resourcepack/variant 1/hd/"
-          zip -Xr $GITHUB_WORKSPACE/target/EmojiChat.1.HD.ResourcePack.zip *
-          cd "$GITHUB_WORKSPACE/resourcepack/variant 2/sd/"
-          zip -Xr $GITHUB_WORKSPACE/target/EmojiChat.2.SD.ResourcePack.zip *
-          cd "$GITHUB_WORKSPACE/resourcepack/variant 2/hd/"
-          zip -Xr $GITHUB_WORKSPACE/target/EmojiChat.2.HD.ResourcePack.zip *
+        run: ./zip-resource-packs.sh
       - name: Generate Hashes
         run: node automation/genHashes.js
       - name: Commit Updates

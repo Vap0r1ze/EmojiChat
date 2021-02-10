@@ -14,15 +14,7 @@ jobs:
     - name: Build with Maven
       run: mvn package --file pom.xml -Dmaven.wagon.http.ssl.insecure=true
     - name: Zip Resource Pack Variants
-      run: |
-        cd "$GITHUB_WORKSPACE/resourcepack/variant 1/sd/"
-        zip -Xr $GITHUB_WORKSPACE/target/EmojiChat.1.SD.ResourcePack.zip *
-        cd "$GITHUB_WORKSPACE/resourcepack/variant 1/hd/"
-        zip -Xr $GITHUB_WORKSPACE/target/EmojiChat.1.HD.ResourcePack.zip *
-        cd "$GITHUB_WORKSPACE/resourcepack/variant 2/sd/"
-        zip -Xr $GITHUB_WORKSPACE/target/EmojiChat.2.SD.ResourcePack.zip *
-        cd "$GITHUB_WORKSPACE/resourcepack/variant 2/hd/"
-        zip -Xr $GITHUB_WORKSPACE/target/EmojiChat.2.HD.ResourcePack.zip *
+      run: ./zip-resource-packs.sh
     - name: Upload Plugin Jar
       uses: skx/github-action-publish-binaries@master
       env:
