@@ -21,5 +21,5 @@ for VARIANT in 1 2; do
   done
 done
 
-Clean
+# Clean
 rm -r resourcepack-temp
