@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/github/release/Vap0r1ze/EmojiChat.svg?colorB=1565C0)](https://github.com/Vap0r1ze/EmojiChat/releases/latest)
 
 ## EmojiChat v2
-This is a fork that includes support for all of the latest twemoji on Discord (up to [Unicode v13.0]), excluding tone variations.
+This is a fork that includes support for all of the latest twemoji on Discord (up to [Unicode v13.0](https://emojipedia.org/unicode-13.0/)), excluding tone variations.
 
 ![Chat Example](https://i.imgur.com/2hkljK3.png)
 
